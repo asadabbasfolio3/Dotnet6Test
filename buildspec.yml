@@ -1,0 +1,23 @@
+version: 0.2
+    
+phases:         
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - dotnet restore WebApplication1.csproj
+      
+  build:
+    commands:
+      - echo Build started on `date`
+      - dotnet build WebApplication1.csproj
+      
+  post_build:
+    commands:
+      - echo Publish started on `date`
+      - dotnet publish -c Release -r WebApplication1.csproj
+      
+artifacts:
+  files:
+    - '**/*'
+  base-directory: ./WebApplication1/bin/Release/net6.0/
+  discard-paths: no
