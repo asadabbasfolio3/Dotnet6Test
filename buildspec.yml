@@ -1,23 +1,40 @@
 version: 0.2
     
-phases:         
+env:
+   variables:
+     PROJECT: Dotnet6Test
+     DOTNET_CORE_RUNTIME: 6.0
+
+phases:   
+  install:
+    runtime-versions:
+      dotnet: ${DOTNET_CORE_RUNTIME}
+      
   pre_build:
     commands:
       - echo Restore started on `date`
-      - dotnet restore WebApplication1.csproj
+      - dotnet restore
       
   build:
     commands:
       - echo Build started on `date`
-      - dotnet build WebApplication1.csproj
+      - dotnet build -c Release
+      #- dotnet test -c Release --logger trx --results-directory ./testresults
       
   post_build:
     commands:
       - echo Publish started on `date`
-      - dotnet publish -c Release -r WebApplication1.csproj
-      
+      - dotnet publish -c Release  -r linux-x64 -o ./build_output ./${PROJECT}/${PROJECT}.csproj --self-contained false
+
 artifacts:
   files:
     - '**/*'
-  base-directory: ./WebApplication1/bin/Release/net6.0/
+  base-directory: ./build_output
   discard-paths: no
+
+#reports:
+#  ${PROJECT}:
+#    file-format: VisualStudioTrx
+#    files:
+#      - '**/*'
+#    base-directory: './testresults'
