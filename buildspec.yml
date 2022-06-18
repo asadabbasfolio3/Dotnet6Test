@@ -7,6 +7,7 @@ env:
 
 phases:   
   install:
+    commands:
     - /usr/local/bin/dotnet-install.sh --channel LTS
     #runtime-versions:
     #  dotnet: ${DOTNET_CORE_RUNTIME}
