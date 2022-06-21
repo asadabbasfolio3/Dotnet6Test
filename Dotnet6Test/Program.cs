@@ -10,7 +10,7 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 var app = builder.Build();
 
-
+// Test to commit
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
