@@ -4,7 +4,10 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/f3-emg-test
+file_exists_behavior: OVERWRITE
 hooks:
+  BeforeInstall:
+    - rm -r 
   ApplicationStart:
     - location: ./installApp.sh
       timeout: 300
