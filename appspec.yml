@@ -1,0 +1,10 @@
+
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/f3-emg-test
+hooks:
+  ApplicationStart:
+    - location: ./installApp.sh
+      timeout: 300
