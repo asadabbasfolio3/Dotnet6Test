@@ -15,7 +15,7 @@ phases:
   pre_build:
     commands:
       - echo Restore started on `date`
-      - dotnet restore
+      - dotnet restore Dotnet6Test.sln
       
   build:
     commands:
